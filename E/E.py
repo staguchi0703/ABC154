@@ -16,6 +16,23 @@ sys.stdin=f
 ##################################
 # %%
 # 以下ペースト可
-num_list = [int(item) for item in input().split()]
-print('E', num_list)
 
+N = int(input())
+K = int(input())
+
+oder_N = len(str(N))
+num_zero = oder_N - K
+
+res = 0
+
+if K == 1:
+    res = (num_zero + 1) * 9
+    res -=  (9 - int(str(N)[0:-2]))
+
+if K ==2:
+    res = (num_zero + 1) * 9
+    res -=  (9 - int(str(N)[0:-2]))
+else:
+    res = (num_zero + 1) * 9
+    res -=  (9 - int(str(N)[0:-2]))
+print(res)

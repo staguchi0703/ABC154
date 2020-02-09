@@ -16,6 +16,6 @@ sys.stdin=f
 ##################################
 # %%
 # 以下ペースト可
-num_list = [int(item) for item in input().split()]
-print('B', num_list)
+S = input()
+print('x' * len(S))
 

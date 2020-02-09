@@ -16,6 +16,18 @@ sys.stdin=f
 ##################################
 # %%
 # 以下ペースト可
-num_list = [int(item) for item in input().split()]
-print('D',num_list)
+N, K = [int(item) for item in input().split()]
+N_list = [int(item) for item in input().split()]
+
+k_list = [(i+1)/2 for i in N_list]
+
+
+memo = sum(k_list[0:K])
+accum_list = [memo]
+
+for i in range(N-K):
+    memo += k_list[i+K] - k_list[i]
+    accum_list.append(memo)
+
+print(max(accum_list))
 
