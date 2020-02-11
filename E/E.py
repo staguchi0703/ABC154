@@ -16,23 +16,37 @@ sys.stdin=f
 ##################################
 # %%
 # 以下ペースト可
+import numpy as np
 
 N = int(input())
 K = int(input())
 
-oder_N = len(str(N))
-num_zero = oder_N - K
+N_str = str(N)
+oder_N = len(N_str)
 
-res = 0
+dp = np.zeros((oder_N+1, K+1, 2), dtype='int32')
+dp[0, 0, 0] = 1
 
-if K == 1:
-    res = (num_zero + 1) * 9
-    res -=  (9 - int(str(N)[0:-2]))
+for i in range(oder_N):
+    temp_num = int(N_str[i])
+    for j in range(K):
+        for k in range(2):
+            for d in range(10):
+                ni = i + 1
+                nj = j
+                nk = k
 
-if K ==2:
-    res = (num_zero + 1) * 9
-    res -=  (9 - int(str(N)[0:-2]))
-else:
-    res = (num_zero + 1) * 9
-    res -=  (9 - int(str(N)[0:-2]))
-print(res)
+                if d != 0:
+                    nj += 1
+                if nj > K:
+                    continue
+                if k == 0:
+                    if d > temp_num:
+                        continue
+                    if d < temp_num:
+                        nk = 1
+
+            dp[ni, nj, nk] += dp[i, j ,k]
+            
+
+print(dp)
